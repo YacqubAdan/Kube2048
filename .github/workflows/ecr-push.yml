@@ -23,7 +23,7 @@ jobs:
           echo "Exiting without deployment"
           exit 1
         fi
-        shell: bash
+      shell: bash
 
     - name: Checkout
       uses: actions/checkout@v2
