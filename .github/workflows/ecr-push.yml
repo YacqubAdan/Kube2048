@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
-      ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+      ECR_REPOSITORY: eks-proj
       IMAGE_TAG: latest 
     steps:
 
@@ -38,9 +38,6 @@ jobs:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
-
-    - name: Set local environment variable for ECR registry
-      run: echo "ECR_REGISTRY=${{ steps.login-ecr.outputs.registry }}" >> $GITHUB_ENV
 
     - name: Build Image
       run: |
