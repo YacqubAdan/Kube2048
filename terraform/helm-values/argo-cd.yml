@@ -1,4 +1,4 @@
-.server: 
+server: 
   extraArgs:
   - --insecure 
   service:
