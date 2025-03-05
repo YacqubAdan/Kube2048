@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: issuer
+spec:
+  acme:
+    server: "https://acme-v02.api.letsencrypt.org/directory"
+    email: "yacquubadan.1@gmail.com"
+    privateKeySecretRef:
+      name: issuer
+    solvers:
+    - dns01:
+        route53:
+          hostedZoneID: Z04888671KHSFE3ZN4IO2
+      selector:
+        dnsZones:
+        - k8s.yacquub.com
+    - http01:
+        ingress:
+          class: nginx
