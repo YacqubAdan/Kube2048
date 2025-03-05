@@ -1,0 +1,11 @@
+provider: aws 
+env:
+- name: AWS_DEFAULT_REGION
+  value: eu-west-2
+
+serviceAccount:
+  annotations: 
+    eks.amazonaws.com/role-arn: arn:aws:iam::528757784671:role/external-dns
+
+domainFilters:
+- k8s.yacquub.com
