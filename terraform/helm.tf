@@ -44,3 +44,18 @@ resource "helm_release" "external_dns" {
   ]
 
 }
+
+resource "helm_release" "argocd_deploy" {
+  name       = "argocd"
+  repository = "https://argoproj.github.io/argo-helm"
+  chart      = "argo-cd"
+  timeout    = "600"
+
+  namespace        = "argo-cd"
+  create_namespace = true
+
+  values = [
+    file("helm-values/argo-cd.yml")
+  ]
+
+}
