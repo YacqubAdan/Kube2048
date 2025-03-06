@@ -3,7 +3,7 @@ locals {
   domain     = "k8s.yacquub.com"
   region     = "eu-west-2"
   account_id = "528757784671"
-  hosted_zone_arn = "arn:aws:route53:::hostedzone/Z04848331TNVYTMBOEV39"
+  hosted_zone_arn = "arn:aws:route53:::hostedzone/Z04888671KHSFE3ZN4IO2"
 
 
   tags = {
