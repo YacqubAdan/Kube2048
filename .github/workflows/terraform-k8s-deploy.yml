@@ -136,10 +136,10 @@ jobs:
           aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER_NAME }} --region ${{ env.AWS_REGION }}
 
       - name: Apply issuer.yaml
-        run: kubectl apply -f helm-values/issuer.yaml
+        run: kubectl apply -f cert-man/issuer.yml
 
       - name: Apply app-argo.yaml
-        run: kubectl apply -f argocd/app-argo.yaml
+        run: kubectl apply -f argocd/app-argo.yml
 
       - name: Deploy 2048 game
-        run: kubectl apply -f apps/2048-deploy.yml
+        run: kubectl apply -f argocd/apps/2048.yml
