@@ -12,7 +12,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-west-2"
+  region = local.region
 }
 
 provider "helm" {
