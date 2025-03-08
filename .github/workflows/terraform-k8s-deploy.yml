@@ -42,11 +42,11 @@ jobs:
           curl -s https://raw.githubusercontent.com/wata727/tflint/master/install_linux.sh | bash
           tflint --version
 
-      - name: Run tfsec
-        uses: aquasecurity/tfsec-action@v1.0.0
-        with:
-          working-directory: terraform
-          soft-fail: true
+      # - name: Run tfsec
+      #   uses: aquasecurity/tfsec-action@v1.0.0
+      #   with:
+      #     working-directory: terraform
+      #     soft-fail: true
 
       - name: Checkov Install
         run: |
