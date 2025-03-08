@@ -18,8 +18,15 @@ jobs:
   static_analysis:
     name: Static Analysis
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
     steps:
+      - name: "if no confirmation, exit"
+        run: |
+          if [ "${{ github.event.inputs.confirmation }}" != "yes" ]; then
+            echo "Exiting without deployment"
+            exit 1
+          fi
+        shell: bash
+
       - name: Checkout code
         uses: actions/checkout@v4
 
