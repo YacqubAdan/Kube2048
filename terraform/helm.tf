@@ -16,13 +16,15 @@ resource "helm_release" "cert_manager" {
   namespace        = "cert-manager"
 
   set {
-    name  = "installCRDs"
+    name  = "crds.enabled"
     value = "true"
   }
 
   values = [
     file("helm-values/cert-manager.yml")
   ]
+
+  depends_on = [helm_release.nginx_ingress]
 }
 
 
@@ -42,7 +44,7 @@ resource "helm_release" "external_dns" {
   values = [
     file("helm-values/external-dns.yml")
   ]
-
+   depends_on = [helm_release.nginx_ingress]
 }
 
 resource "helm_release" "argocd_deploy" {
@@ -56,6 +58,12 @@ resource "helm_release" "argocd_deploy" {
 
   values = [
     file("helm-values/argo-cd.yml")
+  ]
+
+    depends_on = [
+    helm_release.nginx_ingress,
+    helm_release.cert_manager,
+    helm_release.external_dns
   ]
 
 }
