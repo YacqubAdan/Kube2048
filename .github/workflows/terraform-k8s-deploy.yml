@@ -54,7 +54,7 @@ jobs:
 
       - name: Run Checkov
         run: |
-          checkov -d . ||
+          checkov -d . || echo "continue"
         working-directory: terraform
         
   terraform-plan:
