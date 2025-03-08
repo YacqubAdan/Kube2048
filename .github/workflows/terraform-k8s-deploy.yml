@@ -54,7 +54,7 @@ jobs:
 
       - name: Run Checkov
         run: |
-          checkov -d . || echo "Checkov found issues, but continuing workflow..."
+          checkov -d . ||
         working-directory: terraform
         
   terraform-plan:
@@ -104,6 +104,11 @@ jobs:
 
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v3
+      
+      - name: Terraform Init
+        run:
+          terraform init
+        working-directory: terraform
 
       - name: Terraform Apply
         run:
