@@ -4,6 +4,29 @@
 
 ---
 
+# Local app setup 💻
+```bash
+yarn install
+yarn build
+yarn global add serve
+serve -s build
+
+#yarn start
+http://localhost:3000/workspaces/default/dashboard
+
+## or
+yarn global add serve
+serve -s build
+```
+
+# Prerequisites
+
+- AWS CLI
+- kubectl
+- Terraform
+- Helm
+- Docker
+
 # Multi-Stage Docker Build
 
 Used **multi-stage Docker build**, to follow the best practices for image size and security.
