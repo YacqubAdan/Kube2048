@@ -4,6 +4,14 @@
 
 ---
 
+# Kube2048
+![App](./imgs/2048.png)
+
+
+# Monitoring
+![Grafana](./imgs/grafana.png)
+
+
 # Local app setup 💻
 ```bash
 yarn install
@@ -45,7 +53,7 @@ To ensure modularity and **code reusability** (DRY principle), I’ve structured
    - set up IAM Roles for Service Accounts in an Amazon EKS cluster to securely assume AWS IAM roles granting them access to AWS resources.
 
 4. **Helm Module**
-   - Configures the **NGINX Ingress Controller** to route traffic to services, **Cert-Manager** for automatic certificate management, **ExternalDNS** to dynamically create DNS records, and **ArgoCD** for continuous deployment and GitOps workflows.
+   - Configures the **NGINX Ingress Controller** to route traffic to services, **Cert-Manager** for automatic certificate management, **ExternalDNS** to dynamically create DNS records,**ArgoCD** for continuous deployment and GitOps workflows, **Kube-Prometheus-Stack** for monitoring and observability.
 
 **Additional Files**
 
