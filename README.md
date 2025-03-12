@@ -7,11 +7,6 @@
 # Kube2048
 ![App](./imgs/2048.png)
 
-
-# Monitoring
-![Grafana](./imgs/grafana.png)
-
-
 # Local app setup 💻
 ```bash
 yarn install
@@ -63,6 +58,8 @@ To ensure modularity and **code reusability** (DRY principle), I’ve structured
 
    - The `locals.tf` file defines local variables used throughout the Terraform configuration ensuring consistency and ease of reference.
 
+# Monitoring
+![App](./imgs/grafana.png)
 
 # 🚀 Deployment Workflow
 
