@@ -5,6 +5,8 @@ resource "helm_release" "nginx_ingress" {
 
   create_namespace = true
   namespace        = "nginx-ingress"
+  
+  depends_on = [ module.eks ]
 }
 
 resource "helm_release" "cert_manager" {
@@ -24,7 +26,7 @@ resource "helm_release" "cert_manager" {
     file("helm-values/cert-manager.yml")
   ]
 
-  depends_on = [helm_release.nginx_ingress]
+  depends_on = [helm_release.nginx_ingress, helm_release.external_dns]
 }
 
 
@@ -44,7 +46,7 @@ resource "helm_release" "external_dns" {
   values = [
     file("helm-values/external-dns.yml")
   ]
-   depends_on = [helm_release.nginx_ingress]
+  depends_on = [helm_release.nginx_ingress]
 }
 
 resource "helm_release" "argocd_deploy" {
@@ -60,10 +62,30 @@ resource "helm_release" "argocd_deploy" {
     file("helm-values/argo-cd.yml")
   ]
 
-    depends_on = [
+  depends_on = [
     helm_release.nginx_ingress,
     helm_release.cert_manager,
     helm_release.external_dns
   ]
 
 }
+
+resource "helm_release" "kube_prom_stack" {
+  name       = "monitoring-stack"
+  repository = "https://prometheus-community.github.io/helm-charts"
+  chart      = "kube-prometheus-stack"
+
+  create_namespace = true
+  namespace        = "monitoring"
+
+  values = [
+    file("./helm-values/prom-grafana.yml")
+  ]
+
+  depends_on = [
+    helm_release.nginx_ingress,
+    helm_release.cert_manager,
+    helm_release.external_dns
+  ]
+}
+
